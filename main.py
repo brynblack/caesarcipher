@@ -1,28 +1,21 @@
-def arrLen(array):
-    length = 0
-    for item in array:
-        length += 1
-    return length
+import argparse
 
-def getIndex(array, target):
-    index = 0
-    for item in array:
-        if item != target:
-            index += 1
-        else:
-            break
-    return index
+parser = argparse.ArgumentParser(description='A CLI Caesar Cipher Encryption tool.')
+parser.add_argument('plaintext', type=str)
+parser.add_argument('rotation', type=int)
 
-plaintext = input('Plaintext: ')
-rotation = int(input('Rotation: '))
+args = parser.parse_args()
 
 letters = 'abcdefghijklmnopqrstuvwxyz'
-ciphertext = ""
+ciphertext = ''
 
-for char in plaintext:
-    index = getIndex(letters, char)
-    index += rotation
-    ciphertext += letters[index % arrLen(letters)]
+for char in args.plaintext:
+    if char in letters:
+        index = letters.index(char)
+        index += args.rotation
+        ciphertext += letters[index % len(letters)]
+    else:
+        ciphertext += char
 
 print(ciphertext)
 
