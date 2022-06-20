@@ -1,7 +1,7 @@
 import argparse
 
 parser = argparse.ArgumentParser(description='A CLI Caesar Cipher Encryption tool.')
-parser.add_argument('plaintext', nargs='+', type=str)
+parser.add_argument('plaintext', type=str)
 parser.add_argument('rotation', type=int)
 
 args = parser.parse_args()
